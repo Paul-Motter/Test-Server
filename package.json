@@ -1,33 +1,39 @@
 {
-  "name": "Test_Server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/index.js",
-    "dev": "tsx watch src/index.ts",
-    "build": "tsup src/index.ts --format esm"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "^11.11.0",
-      "onFail": "download"
+    "name": "Test_Server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node dist/index.js",
+        "dev": "tsx watch src/index.ts",
+        "build": "tsup src/index.ts --format esm",
+        "gen_schema": "pnpm exec dotenv -e .env -- sh -c 'pnpm exec supabase gen types typescript --db-url \"$PG_CONNECTION_STRING\" > src/services/supabaseTypes.ts'"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devEngines": {
+        "packageManager": {
+            "name": "pnpm",
+            "version": "^11.11.0",
+            "onFail": "download"
+        }
+    },
+    "type": "module",
+    "dependencies": {
+        "dotenv": "^17.4.2",
+        "express": "^5.2.1",
+        "pg": "^8.22.0"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.6",
+        "@types/node": "^26.1.1",
+        "@types/pg": "^8.20.0",
+        "dotenv-cli": "^11.0.0",
+        "supabase": "^2.109.1",
+        "tsup": "^8.5.1",
+        "tsx": "^4.23.0",
+        "typescript": "^7.0.2"
     }
-  },
-  "type": "module",
-  "dependencies": {
-    "express": "^5.2.1"
-  },
-  "devDependencies": {
-    "@types/express": "^5.0.6",
-    "@types/node": "^26.1.1",
-    "tsup": "^8.5.1",
-    "tsx": "^4.23.0",
-    "typescript": "^7.0.2"
-  }
 }
